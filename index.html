@@ -1,0 +1,204 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<title>Crop Recommendation System</title>
+<style>
+    .error {
+        color: rebeccapurple;
+    }
+
+    .labels {
+
+        font-family: cursive;
+        font: 300;
+    }
+
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?cs=srgb&dl=pexels-alejandro-barron-21404-96715.jpg&fm=jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;/* Bring the container above the video */
+        background-color: rgba(249, 246, 243, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        margin: 50px auto;
+        width: 700px;
+    }
+
+    .header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 10px 10px;
+        text-align: left;
+
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Crop Recommendation System</h1>
+        </div>
+        <form id="inputData" onsubmit="return validateForm()" method="post" action="http://127.0.0.1:5000">
+            <br>
+            <label for="N" class="labels">Nitrogen : &ensp;&ensp;&nbsp;&ensp;&ensp;</label>
+            <input type="text" id="N" name="Nitrogen">
+            <span id="NEx" class="error"> Eg : 90 </span>
+
+            <br>
+            <label for="P" class="labels">Phosphorous :&ensp;&ensp;</label>
+            <input type="text" id="P" name="Phosphorous">
+            <span id="PEx" class="error"> Eg : 42 </span>
+
+            <br>
+            <label for="K" class="labels">Pottasium :&ensp;&ensp;&nbsp;&ensp;&nbsp;</label>
+            <input type="text" id="K" name="Pottasium">
+            <span id="KEx" class="error"> Eg : 43 </span>
+
+            <br>
+            <label for="Temp" class="labels"> Temperature :&ensp;</label>
+            <input type="text" id="Temp" name="Temparature">
+            <span id="TempEx" class="error"> Eg : 24 °C</span>
+
+            <br>
+            <label for="Humidity" class="labels">Humidity : &ensp;&ensp;&nbsp;&ensp;&nbsp;</label>
+            <input type="text" id="Humidity" name="Humidity">
+            <span id="HumidityEx" class="error"> Eg : 82 </span>
+
+            <br>
+            <label for="pH" class="labels">pH :&ensp;&nbsp;&ensp;&nbsp;&ensp;&nbsp;&ensp;&ensp;&nbsp;&ensp;&nbsp;&ensp;&nbsp;</label>
+            <input type="text" id="pH" name="pH">
+            <span id="pHEx" class="error"> Eg : 7 </span>
+
+            <br>
+            <label for="Rainfall" class="labels">Rainfall :&ensp; &nbsp;&ensp;&ensp;&nbsp;&ensp;&nbsp; </label>
+            <input type="text" id="Rainfall" name="Rainfall">
+            <span id="RainfallEx" class="error"> Eg : 90 </span>
+
+            <br> <br>
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+    <script>
+
+        function validateForm() {
+            var isValid = true;
+
+            var n = document.getElementById("N").value;
+            var p = document.getElementById("P").value;
+            var k = document.getElementById("K").value;
+            var temp = document.getElementById("Temp").value;
+            var hum = document.getElementById("Humidity").value;
+            var ph = document.getElementById("pH").value;
+            var rf = document.getElementById("Rainfall").value;
+
+            var regex = /^[0-9]+\.?[0-9]*$/;
+
+            document.getElementById("NEx").innerHTML = "";
+            document.getElementById("PEx").innerHTML = "";
+            document.getElementById("KEx").innerHTML = "";
+            document.getElementById("TempEx").innerHTML = "";
+            document.getElementById("HumidityEx").innerHTML = "";
+            document.getElementById("pHEx").innerHTML = "";
+            document.getElementById("RainfallEx").innerHTML = "";
+
+
+            if (!regex.test(n)) {
+                if (n == "") {
+                    document.getElementById("NEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("NEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+            if (!regex.test(p)) {
+                if (p == "") {
+                    document.getElementById("PEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("PEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+
+            if (!regex.test(k)) {
+                if (k == "") {
+                    document.getElementById("KEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("KEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+            if (!regex.test(temp)) {
+                if (temp == "") {
+                    document.getElementById("TempEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("TempEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+            if (!regex.test(hum)) {
+                if (hum == "") {
+                    document.getElementById("HumidityEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("HumidityEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+            if (!regex.test(ph)) {
+                if (ph == "") {
+                    document.getElementById("pHEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("pHEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+
+            if (!regex.test(rf)) {
+                if (rf == "") {
+                    document.getElementById("RainfallEx").innerHTML = "No Value Entered";
+                }
+                else {
+                    document.getElementById("RainfallEx").innerHTML = "Incorrect Format Entered";
+                }
+                isValid = false;
+            }
+
+
+
+            return isValid;
+        }
+
+    </script>
+</body>
+</html>
